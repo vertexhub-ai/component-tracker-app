@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: component-tracker-app
-          image: localhost:30500/component-tracker-app/api:0a542a5
+          image: localhost:30500/component-tracker-app/api:05ca244
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
