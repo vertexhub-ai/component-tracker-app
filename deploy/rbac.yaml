@@ -1,0 +1,26 @@
+---
+# Role that grants permissions to manage batch jobs
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: jobs-manager
+  namespace: vertexagents-runtime
+rules:
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "get", "list", "watch", "delete", "patch"]
+---
+# RoleBinding that grants the default service account the jobs-manager role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: default-jobs-manager
+  namespace: vertexagents-runtime
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: jobs-manager
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: vertexagents-runtime
